@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Number Guessing Game</title>
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         -webkit-box-sizing: border-box;
+         box-sizing: border-box;
+         letter-spacing: 1.1px;
+         font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+         background: royalblue;
+         height: 100vh;
+         ;
+         width: 100%;
+         display: -webkit-box;
+         display: -ms-flexbox;
+         display: flex;
+         -webkit-box-pack: center;
+         -ms-flex-pack: center;
+         justify-content: center;
+         -webkit-box-align: center;
+         -ms-flex-align: center;
+         align-items: center;
+      }
+
+      .guess-box {
+         height: 500px;
+         width: 450px;
+         background: #fff;
+         -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.534);
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.534);
+         border-radius: 20px;
+         position: relative;
+      }
+
+      .title {
+         background: rgb(31, 0, 206);
+         color: #fff;
+         width: 350px;
+         font-size: 20px;
+         padding: 8px;
+         border-radius: 0 0 40px 40px;
+         text-align: center;
+         position: fixed;
+         left: 50%;
+         -webkit-transform: translatex(-50%);
+         -ms-transform: translatex(-50%);
+         transform: translatex(-50%);
+         -webkit-box-shadow: 0 5px 8px rgba(0, 0, 0, 0.336);
+         box-shadow: 0 5px 8px rgba(0, 0, 0, 0.336);
+      }
+
+      .inner-box {
+         padding: 50px 20px;
+         text-align: center;
+         display: -webkit-box;
+         display: -ms-flexbox;
+         display: flex;
+         -webkit-box-pack: space-evenly;
+         -ms-flex-pack: space-evenly;
+         justify-content: space-evenly;
+         -webkit-box-align: center;
+         -ms-flex-align: center;
+         align-items: center;
+         -webkit-box-orient: vertical;
+         -webkit-box-direction: normal;
+         -ms-flex-direction: column;
+         flex-direction: column;
+         height: 100%;
+         font-size: 20px;
+      }
+
+      .heading {
+         line-height: 30px;
+      }
+
+      input {
+         height: 70px;
+         width: 150px;
+         border: 1px solid lightgrey;
+         font-size: 38px;
+         outline: none;
+         text-align: center;
+         color: #555555;
+      }
+
+      button {
+         height: 50px;
+         width: 150px;
+         background: royalblue;
+         color: #fff;
+         border-radius: 5px;
+         font-size: 22px;
+         border: none;
+         outline: none;
+         cursor: pointer;
+         -webkit-transition: all .4s;
+         -o-transition: all .4s;
+         transition: all .4s;
+      }
+
+      button:hover {
+         background: rgb(37, 79, 206);
+      }
+
+      .result {
+         font-weight: 600;
+      }
+
+      .taken-chance {
+         color: royalblue;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="guess-box">
+      <div class="title"> Number Guessing Game </div>
+      <div class="inner-box">
+         <div class="heading"> I guess number between 1 to 100. <br>Can you guess it ?</div>
+         <input type="number" name="" id="guessNum" autofocus>
+         <button> Check </button>
+         <div class="result"> </div>
+         <div class="taken-chance"> </div>
+      </div>
+   </div>
+
+
+   <script>
+      let guessNum = document.querySelector("#guessNum")
+      let btn = document.querySelector("button")
+      let result = document.querySelector(".result")
+      let takenChance = document.querySelector(".taken-chance")
+      let chance = 0
+
+      let randNum = Math.ceil(Math.random() * 100)
+      console.log(randNum)
+
+      btn.addEventListener("click", () => {
+         let inputValue = guessNum.value
+
+         if (inputValue > 100 || inputValue < 1) {
+            result.style.color = "red"
+            result.innerHTML = `Please! Guess number between 1 to 100`
+         } else if (inputValue == randNum) {
+            chance++
+            result.style.color = "#00af00"
+            result.innerHTML = `You guess perfect number!`
+            takenChance.innerHTML = `You have taken ${chance} chance for guessing number`
+
+         } else if (inputValue > randNum) {
+            chance++
+            result.style.color = "red"
+            result.innerHTML = `${inputValue} <br> You guess High number!`
+            // guessNum.value = ''
+         } else if (inputValue < randNum) {
+            chance++
+            result.style.color = "red"
+            result.innerHTML = `${inputValue} <br> You guess Low number!`
+            // guessNum.value = ''
+         }
+      })
+   </script>
+</body>
+
+</html>
