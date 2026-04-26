@@ -1,2 +1,2 @@
 # Small-Projects
-Some small projects using HTML, CSS and JavaScript.
+I've built a few Small projects using HTML5, CSS, and JavaScript.
